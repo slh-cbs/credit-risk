@@ -15,7 +15,7 @@ def debt_value(V, D, sigma_V, r, T):
     
 def credit_spread(V, D, sigma_V, r, T):
     if T == 0:
-        return 0.0 if V >= D else np.inf
+        return 0.0 if V > D else np.inf
     else:
         B = debt_value(V, D, sigma_V, r, T)
         return - np.log(B / D) / T - r
@@ -33,9 +33,6 @@ def mle_estimation_from_asset_values(dates, values, days_in_year):
     return ue.mle_estimation_gbm(dates, values, days_in_year)
 
 def mle_estimation_from_equity_values(dates, equity_values, face_values, short_rates, T, days_in_year, tol):
-
-    # assume data is sorted
-    # dates, equity_values, debt_values, short_rates = zip(*sorted(zip(dates, equity_values, debt_values, short_rates)))
 
     params = [{'D': D, 'r': r, 'T': T} for D, r in zip(face_values, short_rates)]
     
