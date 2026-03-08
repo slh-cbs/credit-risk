@@ -5,13 +5,13 @@ import models.black_scholes as bs
 import utils.estimation as ue
 
 def equity_value(V, D, sigma_V, r, T):
-    return bs.call(V, D, sigma_V, r, T)
+    return bs.call(spot=V, strike=D, vol=sigma_V, rate=r, ttm=T)
 
 def equity_delta(V, D, sigma_V, r, T):
-    return bs.call_delta(V, D, sigma_V, r, T)
+    return bs.call_delta(spot=V, strike=D, vol=sigma_V, rate=r, ttm=T)
 
 def debt_value(V, D, sigma_V, r, T):
-    return V - bs.call(V, D, sigma_V, r, T)
+    return V - bs.call(spot=V, strike=D, vol=sigma_V, rate=r, ttm=T)
     
 def credit_spread(V, D, sigma_V, r, T):
     if T == 0:
