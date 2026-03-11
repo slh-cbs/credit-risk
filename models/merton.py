@@ -58,7 +58,7 @@ def vassalou_xing_estimation(dates, equity_values, face_values, short_rates, T, 
 
     V = [implied_asset_value(S, D, sigma, r, T) for S, D, r in zip(equity_values, face_values, short_rates)]
 
-    diff = 10
+    diff = 10.0
     while diff > tol:
         mle_estimates = ue.mle_estimation_gbm(dates=dates, values=V, days_in_year=days_in_year)
         sigma_new = mle_estimates['sigma']
